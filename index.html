@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <title>Lab 6</title>
+         <link rel="stylesheet" href="index.css" type="text/css" />
+    </head>
+    
+    <body>
+        <button id="find">Search</button>
+        
+        <script type="text/javascript" >
+            var button=document.getElementById("find");
+            button.addEventListener("click", function()
+            {
+                var httpRequest= new XMLHttpRequest();
+                var url="request.php";
+                httpRequest.onreadystatechange=alertContents;
+                httpRequest.open('GET', url);
+                httpRequest.send();
+               //alert("Test"); 
+               
+               function alertContents() {
+                   //var results = document.querySelector("url");
+                   if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                       if (httpRequest.status === 200) {
+                           var response = JSON.parse(httpRequest.responseText);
+                           alert(response.computerString);
+                           
+                           }
+                           //alert(httpRequest.responseText);
+                           
+                       } else 
+                       {
+                           alert('There was a problem with the request.');
+                           
+                       }
+                   
+               }
+
+            });
+            
+            
+        </script>
+    </body>
+   
+    
+    
+    
+    
+</html>
+  
